@@ -3,7 +3,8 @@ package gui;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
- //TODO  +/- císlo - zmena znamienka doriesit
+//TODO opravit naslednost operacii - nefunguje po equal
+//TODO  +/- císlo - zmena znamienka doriesit
 
 
 public class calcGui {
@@ -51,7 +52,10 @@ public class calcGui {
                 return  vysledok * hodnota;
             case "/":
                 return  vysledok / hodnota;
-                                        }
+            case "=":
+                return  vysledok;
+
+        }
 
         return hodnota;
     }
@@ -212,12 +216,14 @@ public calcGui() {
         public void actionPerformed(ActionEvent e) {
 
             if (readvalue=="") readvalue="0";
+
             double value1 = Double.parseDouble(readvalue);
             result=calcresult(value1,result,operacia);
 
+            operacia = "=";
             display.setText(String.valueOf(result));
             display2.setText(result +operacia);
-           // readvalue="";
+            readvalue="";
 
         }
     });
