@@ -3,7 +3,7 @@ package gui;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//TODO opravit naslednost operacii - nefunguje po equal
+//TODO  divna vlastnost beznej kalkulacky -  napr. 9/=   result 1  ????
 //TODO  +/- císlo - zmena znamienka doriesit
 
 
@@ -55,9 +55,9 @@ public class calcGui {
             case "=":
                 return  vysledok;
 
-        }
+                        }
 
-        return hodnota;
+       return hodnota;
     }
 
 public calcGui() {
@@ -180,7 +180,10 @@ public calcGui() {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if (readvalue=="") readvalue="0";
+            //if (readvalue=="") readvalue="0";
+            if ((readvalue=="") && ((operacia=="+")||(operacia=="-"))) readvalue="0";
+            if ((readvalue=="") && ((operacia=="*")||(operacia=="/")) ) readvalue="1";
+            if ((readvalue=="") && ((operacia==""))|| (operacia=="=")) readvalue="0";
 
             double value1 = Double.parseDouble(readvalue);
             result=calcresult(value1,result,operacia);
@@ -197,7 +200,10 @@ public calcGui() {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if (readvalue=="") readvalue="0";
+          //  if (readvalue=="") readvalue="0";
+            if ((readvalue=="") && ((operacia=="+")||(operacia=="-"))) readvalue="0";
+            if ((readvalue=="") && ((operacia=="*")||(operacia=="/")) ) readvalue="1";
+            if ((readvalue=="") && ((operacia==""))|| (operacia=="=")) readvalue="0";
 
             double value1 = Double.parseDouble(readvalue);
             result=calcresult(value1,result,operacia);
@@ -215,14 +221,16 @@ public calcGui() {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if (readvalue=="") readvalue="0";
+            if ((readvalue=="") && ((operacia=="+")||(operacia=="-"))) readvalue="0";
+            if ((readvalue=="") && ((operacia=="*")||(operacia=="/")) ) readvalue="1";
+            if ((readvalue=="") && ((operacia==""))|| (operacia=="=")) readvalue="0";
 
             double value1 = Double.parseDouble(readvalue);
             result=calcresult(value1,result,operacia);
 
-            operacia = "=";
+           // operacia = "=";
             display.setText(String.valueOf(result));
-            display2.setText(result +operacia);
+            display2.setText(value1 +operacia);
             readvalue="";
 
         }
@@ -230,11 +238,17 @@ public calcGui() {
     buttonmultiply.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (readvalue=="") readvalue="1";
+
+            //if (readvalue=="") readvalue="1";
+            if ((readvalue=="") && ((operacia=="+")||(operacia=="-"))) readvalue="0";
+            if ((readvalue=="") && ((operacia=="*")||(operacia=="/")) ) readvalue="1";
+            if ((readvalue=="") && ((operacia==""))|| (operacia=="=")) readvalue="0";
+
+
             double value1 = Double.parseDouble(readvalue);
 
             result=calcresult(value1,result,operacia);
-            operacia = "*";
+            //operacia = "*";
 
             display.setText(String.valueOf(result));
             display2.setText(result +operacia);
@@ -244,7 +258,13 @@ public calcGui() {
     buttondivide.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (readvalue=="") readvalue="1";
+
+            //if (readvalue=="") readvalue="1";
+            if ((readvalue=="") && ((operacia=="+")||(operacia=="-"))) readvalue="0";
+            if ((readvalue=="") && ((operacia=="*")||(operacia=="/")) ) readvalue="1";
+            if ((readvalue=="") && ((operacia==""))|| (operacia=="=")) readvalue="0";
+
+
             double value1 = Double.parseDouble(readvalue);
             result=calcresult(value1,result,operacia);
 
