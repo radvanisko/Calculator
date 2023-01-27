@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 //TODO  divna vlastnost beznej kalkulacky -  napr. 9/=   result 1  ????
 //TODO  +/- císlo - zmena znamienka doriesit
 
+// toto je  verzia kde idem robit bez stringov
 
 public class calcGui {
     private JButton button0;

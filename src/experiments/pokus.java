@@ -23,7 +23,7 @@ package experiments;
         }
 
         public static void main(String[] args) {
-            double z = calcresult(13,5,"+");
+            double z = calcresult(13,5,"/");
             System.out.println(z);
         }
     }
