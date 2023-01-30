@@ -3,12 +3,14 @@ package gui;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 //TODO  divna vlastnost beznej kalkulacky -  napr. 9/=   result 1  ????
 //TODO  +/- císlo - zmena znamienka doriesit
+//TODO zopbrazovanie dlhych cisiel
 
-// toto je  verzia kde idem robit bez stringov
 
-public class calcGui {
+public class CalcGui {
     private JButton button0;
     private JButton buttonplusminus;
     private JButton buttoncomma;
@@ -18,51 +20,29 @@ public class calcGui {
     private JButton button5;
     private JButton button2;
     private JButton button6;
-    private JButton buttonplus;
-    private JButton buttonminus;
-    private JButton buttonmultiply;
+    private JButton buttonPlus;
+    private JButton buttonMinus;
+    private JButton buttonMultiply;
     private JButton button7;
     private JButton button8;
     private JButton button9;
-    private JButton buttondivide;
-    private JButton buttonclear;
+    private JButton buttonDivide;
+    private JButton buttonClear;
     private JPanel panelMain;
-    private JTextPane display;
+    private JTextArea display;
     private JFormattedTextField display2;
     private JButton buttonresult;
 
-
     private double value1=0;
     private String readvalue="";
+    private double vstupnahodnota;
+
     private double result=0;
     private String operacia="";
 
 
-    //display2.setText(String.valueOf(value1));
-
-
-    static double calcresult (double hodnota,double vysledok, String operacia) {
-        //kroky podla operacie +-*/
-
-        switch (operacia) {
-            case "+":
-                return vysledok + hodnota;
-            case "-":
-                return vysledok - hodnota;
-            case "*":
-                return  vysledok * hodnota;
-            case "/":
-                return  vysledok / hodnota;
-            case "=":
-                return  vysledok;
-
-                        }
-
-       return hodnota;
-    }
-
-public calcGui() {
-    buttonclear.addActionListener(new ActionListener() {
+public CalcGui() {
+    buttonClear.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             value1=0;
@@ -79,6 +59,7 @@ public calcGui() {
         public void actionPerformed(ActionEvent e) {
             readvalue=readvalue+"1";
             display.setText(readvalue);
+
         }
 
     });
@@ -89,26 +70,7 @@ public calcGui() {
             display.setText(readvalue);
         }
     });
-    buttoncomma.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
 
-            if(readvalue.indexOf(".")!=-1)
-            {
-                // uz tam je desatinna ciarka/bodka
-            }
-            else
-            {
-                if (readvalue.length()==0) { readvalue=readvalue+"0"; }
-
-                readvalue=readvalue+".";
-            }
-
-            display.setText(readvalue);
-
-
-        }
-    });
     button3.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -177,7 +139,7 @@ public calcGui() {
             display.setText(readvalue);
         }
     });
-    buttonplus.addActionListener(new ActionListener() {
+    buttonPlus.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -189,19 +151,21 @@ public calcGui() {
             double value1 = Double.parseDouble(readvalue);
             result=calcresult(value1,result,operacia);
 
-            operacia = "+";
-
-            display.setText(String.valueOf(result));
-            display2.setText(result +operacia);
+          operacia = "+";
+          display.setText(upravcislo(result));
+          display2.setText(upravcislo(result) +operacia);
+          //            display.setText(String.valueOf(result));
+//            display.setText(String.valueOf(formatter.format(result)));
+//            display2.setText(result +operacia);
             readvalue="";
 
         }
     });
-    buttonminus.addActionListener(new ActionListener() {
+    buttonMinus.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-          //  if (readvalue=="") readvalue="0";
+
             if ((readvalue=="") && ((operacia=="+")||(operacia=="-"))) readvalue="0";
             if ((readvalue=="") && ((operacia=="*")||(operacia=="/")) ) readvalue="1";
             if ((readvalue=="") && ((operacia==""))|| (operacia=="=")) readvalue="0";
@@ -211,8 +175,11 @@ public calcGui() {
 
             operacia = "-";
 
-            display.setText(String.valueOf(result));
-            display2.setText(result +operacia);
+            display.setText(upravcislo(result));
+            display2.setText(upravcislo(result) +operacia);
+
+//            display.setText(String.valueOf(result));
+//            display2.setText(result +operacia);
             readvalue="";
 
 
@@ -230,13 +197,17 @@ public calcGui() {
             result=calcresult(value1,result,operacia);
 
            // operacia = "=";
-            display.setText(String.valueOf(result));
-            display2.setText(value1 +operacia);
+
+            display.setText(upravcislo(result));
+            display2.setText(upravcislo(result) +operacia);
+
+//            display.setText(String.valueOf(result));
+//            display2.setText(value1 +operacia);
             readvalue="";
 
         }
     });
-    buttonmultiply.addActionListener(new ActionListener() {
+    buttonMultiply.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -249,14 +220,16 @@ public calcGui() {
             double value1 = Double.parseDouble(readvalue);
 
             result=calcresult(value1,result,operacia);
-            //operacia = "*";
+            operacia = "*";
 
-            display.setText(String.valueOf(result));
-            display2.setText(result +operacia);
+            display.setText(upravcislo(result));
+            display2.setText(upravcislo(result) +operacia);
+//            display.setText(String.valueOf(result));
+//            display2.setText(result +operacia);
             readvalue="";
         }
     });
-    buttondivide.addActionListener(new ActionListener() {
+    buttonDivide.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -271,11 +244,35 @@ public calcGui() {
 
             operacia = "/";
 
-            display.setText(String.valueOf(result));
-            display2.setText(result +operacia);
+            display.setText(upravcislo(result));
+            display2.setText(upravcislo(result) +operacia);
+//            display.setText(String.valueOf(result));
+//            display2.setText(result +operacia);
             readvalue="";
         }
     });
+
+    buttoncomma.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            if(readvalue.indexOf(".")!=-1)
+            {
+                // uz tam je desatinna ciarka/bodka
+            }
+            else
+            {
+                if (readvalue.length()==0) { readvalue=readvalue+"0"; }
+
+                readvalue=readvalue+".";
+            }
+
+            display.setText(readvalue);
+
+
+        }
+    });
+
     buttonplusminus.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -288,18 +285,43 @@ public calcGui() {
     });
 }
 
+    public static String upravcislo(double xxx) {
+        NumberFormat formatter = new DecimalFormat("###,###,###,###,###,###,###,###.00");
+        return formatter.format(xxx);
+    }
+
+
+    static double calcresult (double hodnota,double vysledok, String operacia) {
+        //kroky podla operacie +-*/
+
+        switch (operacia) {
+            case "+":
+                return vysledok + hodnota;
+            case "-":
+                return vysledok - hodnota;
+            case "*":
+                return  vysledok * hodnota;
+            case "/":
+                return  vysledok / hodnota;
+            case "=":
+                return  vysledok;
+
+        }
+
+        return hodnota;
+    }
     public static void main(String[] args) {
 
         JFrame frame= new JFrame("Simple Calculator - Radvanisko");
-        frame.setContentPane(new calcGui().panelMain);
+        frame.setContentPane(new CalcGui().panelMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
     }
 
-
 }
+
 
 
 

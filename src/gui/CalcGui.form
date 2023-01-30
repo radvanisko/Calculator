@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.calcGui">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.CalcGui">
   <grid id="27dc6" binding="panelMain" layout-manager="GridLayoutManager" row-count="7" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="26" width="500" height="394"/>
+      <xy x="20" y="26" width="524" height="307"/>
     </constraints>
     <properties>
       <maximumSize width="500" height="300"/>
@@ -110,38 +110,7 @@
           <text value="9"/>
         </properties>
       </component>
-      <component id="1b5d5" class="javax.swing.JTextPane" binding="display">
-        <constraints>
-          <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="6" hsize-policy="6" anchor="2" fill="1" indent="2" use-parent-layout="false">
-            <minimum-size width="20" height="20"/>
-            <preferred-size width="150" height="20"/>
-          </grid>
-        </constraints>
-        <properties>
-          <alignmentY value="0.5"/>
-          <autoscrolls value="true"/>
-          <doubleBuffered value="true"/>
-          <dragEnabled value="false"/>
-          <editable value="false"/>
-          <font size="16" style="1"/>
-          <text value="0"/>
-        </properties>
-        <clientProperties>
-          <charset class="java.lang.String" value=""/>
-        </clientProperties>
-      </component>
-      <component id="b9637" class="javax.swing.JFormattedTextField" binding="display2">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties>
-          <editable value="false"/>
-          <text value="0"/>
-        </properties>
-      </component>
-      <component id="7e749" class="javax.swing.JButton" binding="buttonclear">
+      <component id="7e749" class="javax.swing.JButton" binding="buttonClear">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -149,7 +118,7 @@
           <text value="C"/>
         </properties>
       </component>
-      <component id="7e40a" class="javax.swing.JButton" binding="buttondivide">
+      <component id="7e40a" class="javax.swing.JButton" binding="buttonDivide">
         <constraints>
           <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -157,7 +126,7 @@
           <text value="/"/>
         </properties>
       </component>
-      <component id="7584e" class="javax.swing.JButton" binding="buttonmultiply">
+      <component id="7584e" class="javax.swing.JButton" binding="buttonMultiply">
         <constraints>
           <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -165,15 +134,7 @@
           <text value="*"/>
         </properties>
       </component>
-      <component id="8a85" class="javax.swing.JButton" binding="buttonminus">
-        <constraints>
-          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="-"/>
-        </properties>
-      </component>
-      <component id="2e2fb" class="javax.swing.JButton" binding="buttonplus">
+      <component id="2e2fb" class="javax.swing.JButton" binding="buttonPlus">
         <constraints>
           <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -188,6 +149,38 @@
         <properties>
           <label value="="/>
           <text value="="/>
+        </properties>
+      </component>
+      <component id="b9637" class="javax.swing.JFormattedTextField" binding="display2">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <editable value="false"/>
+          <text value="0"/>
+        </properties>
+      </component>
+      <component id="8a85" class="javax.swing.JButton" binding="buttonMinus">
+        <constraints>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="-"/>
+        </properties>
+      </component>
+      <component id="5171b" class="javax.swing.JTextArea" binding="display">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="4" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+            <maximum-size width="-1" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="JetBrains Mono ExtraLight" size="20" style="1"/>
+          <lineWrap value="true"/>
+          <text value="0"/>
         </properties>
       </component>
     </children>
